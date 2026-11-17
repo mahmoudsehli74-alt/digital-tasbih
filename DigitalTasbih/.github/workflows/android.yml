@@ -11,6 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./DigitalTasbih
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -23,14 +27,12 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-      working-directory: ./DigitalTasbih
 
     - name: Build Debug APK
       run: ./gradlew assembleDebug
-      working-directory: ./DigitalTasbih
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
-        path: DigitalTasbih/app/build/outputs/apk/debug/app-debug.apk
+        path: ./DigitalTasbih/app/build/outputs/apk/debug/app-debug.apk
